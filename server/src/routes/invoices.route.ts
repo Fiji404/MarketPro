@@ -1,21 +1,18 @@
 import { Router } from 'express';
-import { AuthController } from '@controllers/auth.controller';
-import { CreateUserDto } from '@dtos/users.dto';
 import { Routes } from '@interfaces/routes.interface';
-import { AuthMiddleware } from '@middlewares/auth.middleware';
-import { ValidationMiddleware } from '@middlewares/validation.middleware';
+import { InvoicesController } from '@/controllers/invoices.controller';
 
-export class AuthRoute implements Routes {
+export class InvoicesRoute implements Routes {
+    public path = '/invoices';
     public router = Router();
-    public auth = new AuthController();
+    public invoices = new InvoicesController();
 
     constructor() {
         this.initializeRoutes();
     }
 
     private initializeRoutes() {
-        this.router.post('/signup', ValidationMiddleware(CreateUserDto), this.auth.signUp);
-        this.router.post('/login', ValidationMiddleware(CreateUserDto), this.auth.logIn);
-        this.router.post('/logout', AuthMiddleware, this.auth.logOut);
+        this.router.get(this.path, this.invoices.getInvoices);
+        // ... this.router.post(this.path, ....);
     }
 }
