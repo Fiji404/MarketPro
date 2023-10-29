@@ -1,7 +1,7 @@
 {
-    "name": "ok",
+    "name": "shop-program",
     "version": "0.0.0",
-    "description": "TypeScript + Express API Server",
+    "description": "Server for share and storing invoices",
     "author": "",
     "license": "ISC",
     "scripts": {
@@ -17,6 +17,7 @@
         "deploy:dev": "pm2 start ecosystem.config.js --only dev"
     },
     "dependencies": {
+        "better-sqlite3": "^9.0.0",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
@@ -35,6 +36,7 @@
     "devDependencies": {
         "@swc/cli": "^0.1.57",
         "@swc/core": "^1.2.220",
+        "@types/better-sqlite3": "^7.6.6",
         "@types/compression": "^1.7.2",
         "@types/cookie-parser": "^1.4.3",
         "@types/cors": "^2.8.12",
