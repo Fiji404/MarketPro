@@ -1,9 +1,9 @@
 import { App } from '@/app';
 import { ValidateEnv } from '@utils/validateEnv';
-import { InvoicesRoute } from './routes/invoices.route';
+import { ProductRoute } from '@/routes/product.route';
 
 ValidateEnv();
 
-const app = new App([new InvoicesRoute()]);
+const app = new App([new ProductRoute()]);
 
 app.listen();
