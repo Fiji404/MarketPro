@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 @layer components {
+    body {
+        font-family: 'Inter', sans-serif;
+    }
     .nav-link {
         @apply text-lg hover:text-[#555555] hover:underline transition-colors;
+    }
+    .product-detail {
+        @apply text-lg basis-7 grow p-1;
     }
 }
