@@ -13,5 +13,6 @@ export class ProductRoute implements Route {
 
     private initializeRoutes() {
         this.router.get(this.path, this.product.getProducts);
+        this.router.post(this.path, this.product.setProduct);
     }
 }
