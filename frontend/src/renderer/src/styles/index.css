@@ -10,6 +10,6 @@
         @apply text-lg hover:text-[#555555] hover:underline transition-colors;
     }
     .product-detail {
-        @apply text-lg basis-7 grow p-1;
+        @apply text-lg basis-7 grow px-1 py-0.5;
     }
 }

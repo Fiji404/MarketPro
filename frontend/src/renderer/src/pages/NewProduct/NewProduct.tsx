@@ -22,6 +22,7 @@ const FORM_FIELDS = [
 export const NewProduct = () => {
     const methods = useForm<FormSchema>({ resolver: zodResolver(formSchema) });
     const formSubmitHandler = ({ vatRate, ...fieldValues }: FormSchema) => {
+        window.close();
         // fetch('http://0.0.0.0:3000/products', {
         //     method: 'POST',
         //     headers: {
