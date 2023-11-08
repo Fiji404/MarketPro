@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Database from 'better-sqlite3';
 import path from 'path';
+import { App } from '@/app';
 
 interface Product {
     name: string;
@@ -17,7 +18,7 @@ export class ProductController {
         res.status(200).json(products);
     }
 
-    setProduct(req: Request, res: Response) {
+    setProduct(req: Request) {
         const { name, quantity, netPrice } = req.body as Product;
 
         const product = {
@@ -29,5 +30,6 @@ export class ProductController {
         const db = new Database(path.join(__dirname, '..', 'db', 'products.db'), { fileMustExist: true });
         const stmt = db.prepare('INSERT INTO products (name, quantity, netPrice) VALUES (@name, @quantity, @netPrice)');
         stmt.run(product);
+        App.socket.emit('add-product');
     }
 }

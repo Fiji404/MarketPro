@@ -9,11 +9,14 @@ import morgan from 'morgan';
 import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN } from '@config';
 import { Route } from '@/types/express';
 import { logger, stream } from '@utils/logger';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 export class App {
     public app: express.Application;
     public env: string;
     public port: string | number;
+    static socket: Server;
 
     constructor(routes: Route[]) {
         this.app = express();
@@ -21,6 +24,7 @@ export class App {
         this.port = PORT || 3000;
 
         this.initializeMiddlewares();
+        this.initializeSocketIo();
         this.initializeRoutes(routes);
     }
 
@@ -46,6 +50,21 @@ export class App {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(cookieParser());
+    }
+
+    private initializeSocketIo() {
+        const httpServer = createServer(this.app);
+        App.socket = new Server(httpServer, { cors: { origin: '*' } });
+
+        App.socket.on('connection', () => {
+            console.log('Client connection estabilished: SERVER');
+        });
+
+        httpServer.listen(4000);
+    }
+
+    static getSocketIo() {
+        return this.socket;
     }
 
     private initializeRoutes(routes: Route[]) {
