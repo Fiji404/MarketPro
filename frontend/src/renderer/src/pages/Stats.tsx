@@ -1,3 +1,4 @@
+import { socket } from '@renderer/socket';
 import { useEffect, useState } from 'react';
 
 interface Product {
@@ -16,6 +17,8 @@ export const Stats = () => {
             setProducts(data);
         };
         getProducts();
+
+        socket.on('add-product', getProducts);
     }, []);
 
     return (
@@ -24,9 +27,15 @@ export const Stats = () => {
             <table className="block mt-5 px-1">
                 <tbody className="flex flex-col">
                     <tr className="flex justify-between">
-                        <th className='text-left basis-7 grow' scope="col">Produkt</th>
-                        <th className='text-left basis-7 grow' scope="col">Ilość</th>
-                        <th className='text-left basis-7 grow' scope="col">Cena</th>
+                        <th className="text-left basis-7 grow" scope="col">
+                            Produkt
+                        </th>
+                        <th className="text-left basis-7 grow" scope="col">
+                            Ilość
+                        </th>
+                        <th className="text-left basis-7 grow" scope="col">
+                            Cena
+                        </th>
                     </tr>
                     {products &&
                         products.map(product => {
