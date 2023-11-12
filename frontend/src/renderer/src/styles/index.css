@@ -3,13 +3,21 @@
 @tailwind utilities;
 
 @layer components {
-    body {
-        font-family: 'Inter', sans-serif;
+    :root {
+        --font: 'Inter', sans-serif;
     }
-    .nav-link {
-        @apply text-lg hover:text-[#555555] hover:underline transition-colors;
+    body {
+        @apply bg-bgMain;
+        font-family: var(--font);
+    }
+    input {
+        font-family: var(--font)
     }
     .product-detail {
         @apply text-lg basis-7 grow px-1 py-0.5;
+        color: hsl(0, 0%, 63%);
+    }
+    .card {
+        @apply bg-[#0a0a0a] text-accent rounded-xl border border-[rgba(255,255,255,0.2)];
     }
 }

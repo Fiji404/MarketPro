@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect, useId, useRef, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
     type?: string;
@@ -33,12 +34,14 @@ export const FormControl = ({ children, type, fieldId, defaultValue }: Props & P
     }, []);
 
     return (
-        <fieldset>
-            <div className="relative before:absolute before:bottom-0 before:h-[2px] before:w-full before:scale-x-0 focus-within:before:bg-orange-400 focus-within:before:scale-x-100 flex flex-col before:transition-transform">
+        <div>
+            <div className="relative border-b border-b-transparent focus-within:border-b-green-500 flex flex-col justify-start transition-colors rounded-md">
                 <label
-                    className={`absolute pointer-events-none ${
-                        isInputFocused ? '-translate-y-5 scale-90' : ''
-                    } transition-transform`}
+                    className={twMerge(
+                        `absolute top-1/2 indent-1 -translate-y-1/2 font-medium pointer-events-none ${
+                            isInputFocused ? '-translate-y-10 scale-90' : ''
+                        } text-foreground transition-transform`
+                    )}
                     htmlFor={id}
                 >
                     {children}
@@ -57,12 +60,12 @@ export const FormControl = ({ children, type, fieldId, defaultValue }: Props & P
                         onBlur(e);
                     }}
                     id={id}
-                    className="border-b-2 focus:outline-none"
+                    className="focus:outline-none card text-foreground min-h-[40px] indent-1 rounded-md"
                     type={type || 'text'}
                     defaultValue={defaultValue || ''}
                 />
             </div>
             {typeof errorName === 'string' && <p className="mt-1 text-red-600">{errorName}</p>}
-        </fieldset>
+        </div>
     );
 };
