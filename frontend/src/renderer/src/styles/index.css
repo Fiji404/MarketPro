@@ -11,7 +11,7 @@
         font-family: var(--font);
     }
     input {
-        font-family: var(--font)
+        font-family: var(--font);
     }
     .product-detail {
         @apply text-lg basis-7 grow px-1 py-0.5;
