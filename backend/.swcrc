@@ -23,13 +23,8 @@
             "@/*": ["*"],
             "@config": ["config"],
             "@controllers/*": ["controllers/*"],
-            "@dtos/*": ["dtos/*"],
-            "@exceptions/*": ["exceptions/*"],
-            "@interfaces/*": ["interfaces/*"],
-            "@middlewares/*": ["middlewares/*"],
-            "@models/*": ["models/*"],
+            "@types/*": ["types/*"],
             "@routes/*": ["routes/*"],
-            "@services/*": ["services/*"],
             "@utils/*": ["utils/*"]
         }
     },

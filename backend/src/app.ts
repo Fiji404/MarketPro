@@ -1,6 +1,4 @@
-import 'reflect-metadata';
 import compression from 'compression';
-import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -24,8 +22,8 @@ export class App {
         this.port = PORT || 3000;
 
         this.initializeMiddlewares();
-        this.initializeSocketIo();
         this.initializeRoutes(routes);
+        this.initializeSocketIo();
     }
 
     public listen() {
@@ -49,22 +47,13 @@ export class App {
         this.app.use(compression());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
-        this.app.use(cookieParser());
     }
 
     private initializeSocketIo() {
         const httpServer = createServer(this.app);
         App.socket = new Server(httpServer, { cors: { origin: '*' } });
 
-        App.socket.on('connection', () => {
-            console.log('Client connection estabilished: SERVER');
-        });
-
         httpServer.listen(4000);
-    }
-
-    static getSocketIo() {
-        return this.socket;
     }
 
     private initializeRoutes(routes: Route[]) {

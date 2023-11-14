@@ -1,7 +1,6 @@
 import { App } from '@/app';
 import { ValidateEnv } from '@utils/validateEnv';
-import { ProductRoute } from '@/routes/product.route';
-import { StatsRoute } from './routes/stats.route';
+import { ProductRoute, StatsRoute } from '@routes/index';
 
 ValidateEnv();
 
